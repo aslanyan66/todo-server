@@ -1,0 +1,52 @@
+{
+    "env": {
+        "node": true,
+        "es2021": true
+    },
+    "plugins": [
+        "prettier"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "globals": {
+        "process": true
+    },
+    "rules": {
+        "no-unused-vars": "warn",
+        "no-duplicate-imports": "error",
+        "camelcase": "error",
+        "spaced-comment": "error",
+        "quotes": ["error", "single"],
+        "no-param-reassign": [
+            "warn",
+            {
+                "props": true,
+                "ignorePropertyModificationsFor": [
+                    "draft"
+                ]
+            }
+        ],
+        "no-restricted-syntax": [
+            "error",
+            "ForInStatement",
+            "LabeledStatement",
+            "WithStatement"
+        ],
+        "no-shadow": [
+            "off"
+        ],
+        "import/no-cycle": [
+            "off",
+            {
+                "maxDepth": 1
+            }
+        ],
+        "import/prefer-default-export": "off"
+    }
+}
