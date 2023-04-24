@@ -16,7 +16,7 @@ COPY . .
 COPY .env .
 
 # Expose the development server port
-EXPOSE 80
+EXPOSE 4000
 
 # Start the application
 CMD [ "yarn", "dev" ]
