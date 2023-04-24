@@ -31,7 +31,7 @@
 
 #### To run the Todo List application with Docker, you must have the following installed on your machine:
 
-### `Docker` `Docker-Compose`
+### `Docker`
 
 ### Development
 #### To run the application in development mode with Docker, follow these steps:
