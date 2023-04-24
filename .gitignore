@@ -11,10 +11,8 @@
 /dist
 
 # misc
-.env
 .DS_Store
 .env.local
-.env
 .env.test.local
 .env.production
 
