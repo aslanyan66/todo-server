@@ -11,7 +11,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 
 import { resolvers, typeDefs } from './graphql/index.js'
-import { getRandomTodo } from './utils/index.js'
+import { generateRandomTodo } from './utils/index.js'
 
 dotenv.config({ path: '.env' })
 const PORT = process.env.APP_PORT
@@ -68,4 +68,4 @@ httpServer.listen(PORT, () => {
 })
 
 // addTodo job that runs every 3 minutes
-getRandomTodo()
+generateRandomTodo()

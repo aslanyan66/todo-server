@@ -1,7 +1,8 @@
-import { collection, doc, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from 'firebase/firestore'
+import {collection, doc, getDoc, getDocs, updateDoc, deleteDoc, addDoc} from 'firebase/firestore'
+
 import { pubsub } from './index.js'
 import firestore from '../firebase.js'
-import { addTodo } from '../utils/index.js'
+import {addTodo, checkIfTodoExists} from '../utils/index.js'
 
 const resolvers = {
   Query: {
@@ -21,12 +22,18 @@ const resolvers = {
   Mutation: {
     // Create and return a new todo in the Firestore 'todos' collection
     createTodo: async (_, { title, isCompleted }) => {
+      await checkIfTodoExists(title)
       return await addTodo({ title, isCompleted })
     },
     // Update an existing todo with the given id in the Firestore 'todos' collection
-    updateTodo: async (_, { id, ...rest }) => {
+    updateTodo: async (_, { id, action, ...todo }) => {
+
+      if(action === 'edit-title') {
+        await checkIfTodoExists(todo.title)
+      }
+
       const todoRef = doc(collection(firestore, 'todos'), id)
-      await updateDoc(todoRef, { ...rest })
+      await updateDoc(todoRef, { ...todo })
       const updatedTodoDoc = await getDoc(todoRef)
       return { ...updatedTodoDoc.data(), id }
     },
